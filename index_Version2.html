@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapay Zeka Sistemleri Rehberi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 10px 15px;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .lang-btn.active {
+            background-color: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+            margin-top: 60px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .category {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .category h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .ai-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ai-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .ai-item h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .ai-item p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .ai-item a {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background-color: #f0f0f0;
+        }
+
+        .ai-item a:hover {
+            background-color: #667eea;
+            color: white;
+            padding: 8px 16px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            opacity: 0.8;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            header {
+                margin-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dil Seçme Düğmeleri -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('tr')">🇹🇷 Türkçe</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
+    </div>
+
+    <div class="container">
+        <!-- TÜRKÇE İÇERİK -->
+        <div id="tr-content">
+            <header>
+                <h1>🤖 Yapay Zeka Sistemleri</h1>
+                <p>Popüler AI Araçlarının Kategorilere Göre Listelenmiş Rehberi</p>
+            </header>
+
+            <div class="categories">
+                <!-- Metin Oluşturma -->
+                <div class="category">
+                    <h2>📝 Metin Oluşturma</h2>
+                    <div class="ai-item">
+                        <h3>ChatGPT</h3>
+                        <p>OpenAI tarafından geliştirilen, sohbet ve metin oluşturmada uzman dil modeli</p>
+                        <a href="https://chat.openai.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Gemini</h3>
+                        <p>Google'ın güçlü yapay zeka asistanı, metin ve görsel analizi için</p>
+                        <a href="https://gemini.google.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Claude</h3>
+                        <p>Anthropic tarafından geliştirilen, etik ve güvenli AI asistanı</p>
+                        <a href="https://claude.ai" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+
+                <!-- Resim Oluşturma -->
+                <div class="category">
+                    <h2>🎨 Resim Oluşturma</h2>
+                    <div class="ai-item">
+                        <h3>DALL-E</h3>
+                        <p>Metin açıklamasından benzersiz resimler oluşturan OpenAI aracı</p>
+                        <a href="https://openai.com/dall-e-3" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Midjourney</h3>
+                        <p>Discord entegrasyonlu, yüksek kaliteli AI resim oluşturucu</p>
+                        <a href="https://www.midjourney.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Stable Diffusion</h3>
+                        <p>Açık kaynak resim oluşturma modeli, kendi sunucudan çalışabilir</p>
+                        <a href="https://stablediffusionweb.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+
+                <!-- Kod Oluşturma -->
+                <div class="category">
+                    <h2>💻 Kod Oluşturma</h2>
+                    <div class="ai-item">
+                        <h3>GitHub Copilot</h3>
+                        <p>GitHub tarafından geliştirilen, kod yazarken yardımcı AI sistemi</p>
+                        <a href="https://github.com/features/copilot" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Codeium</h3>
+                        <p>Ücretsiz kod tamamlama ve AI yardımı, birçok IDE'de çalışır</p>
+                        <a href="https://codeium.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Tabnine</h3>
+                        <p>Makine öğrenmesi tabanlı, akıllı kod tamamlama aracı</p>
+                        <a href="https://www.tabnine.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+
+                <!-- Video Oluşturma -->
+                <div class="category">
+                    <h2>🎬 Video Oluşturma</h2>
+                    <div class="ai-item">
+                        <h3>Synthesia</h3>
+                        <p>Metin ve AI avatarayla video oluşturma platformu</p>
+                        <a href="https://www.synthesia.io" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Runway</h3>
+                        <p>Video düzenleme ve oluşturma için AI araçları</p>
+                        <a href="https://runwayml.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Descript</h3>
+                        <p>Video ve ses düzenlemeyi metin düzenleme gibi yapan platform</p>
+                        <a href="https://www.descript.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+
+                <!-- Ses ve Müzik -->
+                <div class="category">
+                    <h2>🎵 Ses ve Müzik</h2>
+                    <div class="ai-item">
+                        <h3>Murf.ai</h3>
+                        <p>Metin okuma, doğal sounding AI sesleriyle</p>
+                        <a href="https://murf.ai" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>AIVA</h3>
+                        <p>Yapay zeka ile müzik bestesi oluşturma platformu</p>
+                        <a href="https://www.aiva.ai" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Jukebox</h3>
+                        <p>OpenAI tarafından geliştirilen, müzik oluşturan AI modeli</p>
+                        <a href="https://openai.com/research/jukebox" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+
+                <!-- Tasarım ve Editleme -->
+                <div class="category">
+                    <h2>🖼️ Tasarım ve Editleme</h2>
+                    <div class="ai-item">
+                        <h3>Canva Magic</h3>
+                        <p>Canva'nın AI tasarım asistanı, hızlı tasarım oluşturma</p>
+                        <a href="https://www.canva.com" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Adobe Firefly</h3>
+                        <p>Adobe'nin yaratıcı AI aracı, görsel oluşturma ve düzenleme</p>
+                        <a href="https://www.adobe.com/products/firefly.html" target="_blank">Ziyaret Et →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Remove.bg</h3>
+                        <p>Resimden arka planı otomatik olarak kaldıran AI aracı</p>
+                        <a href="https://www.remove.bg" target="_blank">Ziyaret Et →</a>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>© 2026 Yapay Zeka Sistemleri Rehberi | Son güncelleme: Nisan 2026</p>
+            </footer>
+        </div>
+
+        <!-- İNGİLİZCE İÇERİK -->
+        <div id="en-content" class="hidden">
+            <header>
+                <h1>🤖 AI Systems Guide</h1>
+                <p>Popular AI Tools Listed by Category</p>
+            </header>
+
+            <div class="categories">
+                <!-- Text Generation -->
+                <div class="category">
+                    <h2>📝 Text Generation</h2>
+                    <div class="ai-item">
+                        <h3>ChatGPT</h3>
+                        <p>Advanced language model developed by OpenAI, expert in conversations and text generation</p>
+                        <a href="https://chat.openai.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Gemini</h3>
+                        <p>Google's powerful AI assistant for text and visual analysis</p>
+                        <a href="https://gemini.google.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Claude</h3>
+                        <p>Ethical and secure AI assistant developed by Anthropic</p>
+                        <a href="https://claude.ai" target="_blank">Visit →</a>
+                    </div>
+                </div>
+
+                <!-- Image Generation -->
+                <div class="category">
+                    <h2>🎨 Image Generation</h2>
+                    <div class="ai-item">
+                        <h3>DALL-E</h3>
+                        <p>OpenAI tool that generates unique images from text descriptions</p>
+                        <a href="https://openai.com/dall-e-3" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Midjourney</h3>
+                        <p>High-quality AI image generator with Discord integration</p>
+                        <a href="https://www.midjourney.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Stable Diffusion</h3>
+                        <p>Open-source image generation model, can run on your own server</p>
+                        <a href="https://stablediffusionweb.com" target="_blank">Visit →</a>
+                    </div>
+                </div>
+
+                <!-- Code Generation -->
+                <div class="category">
+                    <h2>💻 Code Generation</h2>
+                    <div class="ai-item">
+                        <h3>GitHub Copilot</h3>
+                        <p>AI coding assistant developed by GitHub to help while writing code</p>
+                        <a href="https://github.com/features/copilot" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Codeium</h3>
+                        <p>Free code completion and AI assistance, works in many IDEs</p>
+                        <a href="https://codeium.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Tabnine</h3>
+                        <p>Machine learning-based intelligent code completion tool</p>
+                        <a href="https://www.tabnine.com" target="_blank">Visit →</a>
+                    </div>
+                </div>
+
+                <!-- Video Generation -->
+                <div class="category">
+                    <h2>🎬 Video Generation</h2>
+                    <div class="ai-item">
+                        <h3>Synthesia</h3>
+                        <p>Platform for creating videos with AI avatars and text</p>
+                        <a href="https://www.synthesia.io" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Runway</h3>
+                        <p>AI tools for video editing and creation</p>
+                        <a href="https://runwayml.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Descript</h3>
+                        <p>Platform that treats video and audio editing like text editing</p>
+                        <a href="https://www.descript.com" target="_blank">Visit →</a>
+                    </div>
+                </div>
+
+                <!-- Audio and Music -->
+                <div class="category">
+                    <h2>🎵 Audio and Music</h2>
+                    <div class="ai-item">
+                        <h3>Murf.ai</h3>
+                        <p>Text-to-speech with natural-sounding AI voices</p>
+                        <a href="https://murf.ai" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>AIVA</h3>
+                        <p>Platform for composing music with artificial intelligence</p>
+                        <a href="https://www.aiva.ai" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Jukebox</h3>
+                        <p>AI music generation model developed by OpenAI</p>
+                        <a href="https://openai.com/research/jukebox" target="_blank">Visit →</a>
+                    </div>
+                </div>
+
+                <!-- Design and Editing -->
+                <div class="category">
+                    <h2>🖼️ Design and Editing</h2>
+                    <div class="ai-item">
+                        <h3>Canva Magic</h3>
+                        <p>AI design assistant from Canva for quick design creation</p>
+                        <a href="https://www.canva.com" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Adobe Firefly</h3>
+                        <p>Adobe's creative AI tool for visual generation and editing</p>
+                        <a href="https://www.adobe.com/products/firefly.html" target="_blank">Visit →</a>
+                    </div>
+                    <div class="ai-item">
+                        <h3>Remove.bg</h3>
+                        <p>AI tool that automatically removes backgrounds from images</p>
+                        <a href="https://www.remove.bg" target="_blank">Visit →</a>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>© 2026 AI Systems Guide | Last updated: April 2026</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Dil içeriklerini gizle/göster
+            const trContent = document.getElementById('tr-content');
+            const enContent = document.getElementById('en-content');
+            const langBtns = document.querySelectorAll('.lang-btn');
+
+            if (lang === 'tr') {
+                trContent.classList.remove('hidden');
+                enContent.classList.add('hidden');
+                langBtns[0].classList.add('active');
+                langBtns[1].classList.remove('active');
+                document.documentElement.lang = 'tr';
+            } else {
+                trContent.classList.add('hidden');
+                enContent.classList.remove('hidden');
+                langBtns[0].classList.remove('active');
+                langBtns[1].classList.add('active');
+                document.documentElement.lang = 'en';
+            }
+
+            // LocalStorage'a kaydet (sayfa yeniden açıldığında seçili dil korunsun)
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Sayfa yüklendiğinde kaydedilmiş dili kontrol et
+        window.addEventListener('load', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'tr';
+            switchLanguage(savedLanguage);
+        });
+    </script>
+</body>
+</html>
